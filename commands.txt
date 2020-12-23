@@ -1,0 +1,5 @@
+`-commands` *prints available commands*
+`-hello` *greet the bot*
+`-jojo light` *prints a short quote from jojos bizarre adventures*
+`-jojo elaborate` *prints a elongated quote from jojos bizarre adventures*
+`-zawarudo` *stops time*
