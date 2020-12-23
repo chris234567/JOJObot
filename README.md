@@ -1,4 +1,4 @@
-![alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGrSzRSzLihhKq90Nf3byUKF75CUO0hdMo8g&usqp=CAU)
+![alt text](https://github.com/chris234567/JOJObot/blob/master/dio-brando-jojo-s-bizarre-adventure-all-star-battle-manga-jotaro-kujo-png-clip-art.png)
 
 ## JOJObot
 .. is a dicord Bot that can do stuff related to the anime jojo's bizarre adventure.
