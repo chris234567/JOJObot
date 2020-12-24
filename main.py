@@ -5,6 +5,8 @@ import os
 
 client = discord.Client()
 
+token = open('token.txt', 'r', encoding='utf-8').readlines()
+
 @client.event
 async def on_ready():
     print('We have logged is as {0.user}'.format(client))
@@ -48,9 +50,24 @@ async def on_message(message):
     if message.content.startswith('-zawarudo'):
         await message.channel.send(file=discord.File('Media\myGif.gif'))
 
+    if message.content.startswith('-w2g'):
 
-token = open('token.txt', 'r', encoding='utf-8').readline()
+        import requests
 
-client.run(token)
+        url = 'https://w2g.tv/rooms/create.json'
+        myObj = {
+        'w2g_api_key' : token[1],
+        'share' : 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        'bg_color' : '#00ff00',
+        'bg_opacity' : '50',
+        }
+        myRequest = requests.post(url, data = myObj)
+
+        await message.channel.send('https://w2g.tv/rooms/' + myRequest.text[29: 47: 1])
+
+
+
+
+client.run(token[0])
 
 
