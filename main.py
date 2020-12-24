@@ -49,7 +49,7 @@ async def on_message(message):
         await message.channel.send(file=discord.File('Media\myGif.gif'))
 
 
-token = open('token', 'r', encoding='utf-8').readline()
+token = open('token.txt', 'r', encoding='utf-8').readline()
 
 client.run(token)
 
