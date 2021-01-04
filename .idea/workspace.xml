@@ -89,7 +89,11 @@
       <workItem from="1608805742427" duration="612000" />
       <workItem from="1608806653195" duration="14000" />
       <workItem from="1608812768572" duration="62000" />
-      <workItem from="1608825435165" duration="2924000" />
+      <workItem from="1608825435165" duration="3347000" />
+      <workItem from="1608828995649" duration="17000" />
+      <workItem from="1608924490536" duration="97000" />
+      <workItem from="1609104418731" duration="83000" />
+      <workItem from="1609157836841" duration="604000" />
     </task>
     <servers />
   </component>
@@ -109,6 +113,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/DiscordBot$main.coverage" NAME="main Coverage Results" MODIFIED="1608828420482" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DiscordBot$main.coverage" NAME="main Coverage Results" MODIFIED="1609104421113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
