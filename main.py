@@ -5,7 +5,7 @@ import os
 
 client = discord.Client()
 
-token = open('token.txt', 'r', encoding='utf-8').readlines()
+#token = open('token.txt', 'r', encoding='utf-8').readlines()
 
 @client.event
 async def on_ready():
@@ -56,7 +56,7 @@ async def on_message(message):
 
         url = 'https://w2g.tv/rooms/create.json'
         myObj = {
-        'w2g_api_key' : token[1],
+        'w2g_api_key' : 'W2G_TOKEN',
         'share' : 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
         'bg_color' : '#00ff00',
         'bg_opacity' : '50',
