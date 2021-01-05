@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6f56887-d033-4d14-882f-18f34e259746" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bot/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,6 +134,7 @@
       <workItem from="1609857442209" duration="7000" />
       <workItem from="1609857641697" duration="262000" />
       <workItem from="1609858208972" duration="29000" />
+      <workItem from="1609858494380" duration="241000" />
     </task>
     <servers />
   </component>
