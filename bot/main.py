@@ -29,13 +29,13 @@ async def on_message(message):
 
     # random short quote
     if message.content.startswith('-jojo light'):
-        quotes = open('bot\Media\quotes.txt', 'r', encoding='utf-8').readlines()
+        quotes = open('Media\quotes.txt', 'r', encoding='utf-8').readlines()
         i = random.randint(23, len(quotes) - 1)
         await message.channel.send(format(quotes[i].strip()))
 
     # random long quote
     if message.content.startswith('-jojo elaborate'):
-        quotes = open('bot\Media\quotes.txt', 'r', encoding='utf-8').readlines()
+        quotes = open('Media\quotes.txt', 'r', encoding='utf-8').readlines()
         i = random.randint(1, 22)
         await message.channel.send(format(quotes[i].strip()))
 
@@ -49,7 +49,7 @@ async def on_message(message):
         await message.channel.send(file=discord.File('Media\Memes\\' + random_filename))
 
     if message.content.startswith('-zawarudo'):
-        await message.channel.send(file=discord.File('bot\Media\myGif.gif'))
+        await message.channel.send(file=discord.File('Media\myGif.gif'))
 
     if message.content.startswith('-w2g'):
         url = 'https://w2g.tv/rooms/create.json'
