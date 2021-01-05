@@ -9,6 +9,7 @@ client = discord.Client()
 #token = open('token.txt', 'r', encoding='utf-8').readlines()
 TOKEN1 = os.getenv("DISCORD_TOKEN")
 TOKEN2 = os.getenv("W2G_TOKEN")
+dirname = os.path.dirname(__file__)
 
 @client.event
 async def on_ready():
@@ -31,7 +32,8 @@ async def on_message(message):
 
     # random short quote
     if message.content.startswith('-jojo light'):
-        quotes = open('https://github.com/chris234567/JOJObot/tree/master/bot/Media/quotes.txt', 'r', encoding='utf-8').readlines()
+        filename = os.path.join(dirname, '/Media/quotes.txt')
+        quotes = open('filename', 'r', encoding='utf-8').readlines()
         i = random.randint(23, len(quotes) - 1)
         await message.channel.send(format(quotes[i].strip()))
 
