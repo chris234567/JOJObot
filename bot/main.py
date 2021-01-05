@@ -65,4 +65,4 @@ async def on_message(message):
 
         await message.channel.send('https://w2g.tv/rooms/' + myRequest.text[29: 47: 1])
 
-client.run('NzkxMzQwMTgzODE1NTg1Nzky.X-Nu-g.41K1hsTHHHk5JUBkmp-aDsG_uxI')
+client.run('TOKEN')
