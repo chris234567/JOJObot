@@ -33,7 +33,7 @@ async def on_message(message):
     # random short quote
     if message.content.startswith('-jojo light'):
         filename = os.path.join(dirname, '/Media/quotes.txt')
-        quotes = open('filename', 'r', encoding='utf-8').readlines()
+        quotes = open(filename, 'r', encoding='utf-8').readlines()
         i = random.randint(23, len(quotes) - 1)
         await message.channel.send(format(quotes[i].strip()))
 
