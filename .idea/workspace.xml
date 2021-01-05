@@ -3,27 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b6f56887-d033-4d14-882f-18f34e259746" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/Memes/128acf50b77783ec69c9e4d318fb288d.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/Memes/128acf50b77783ec69c9e4d318fb288d.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/Memes/16z1cijqajf51.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/Memes/16z1cijqajf51.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/Memes/25550304_135575127117222_8091697536820859125_n.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/Memes/25550304_135575127117222_8091697536820859125_n.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/Memes/4f6d9886n0761.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/Memes/4f6d9886n0761.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/Memes/6njvl2qtg5451.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/Memes/6njvl2qtg5451.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/Memes/799fxrx6r3q41.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/Memes/799fxrx6r3q41.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/Memes/9K056IwV_400x400.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/Memes/9K056IwV_400x400.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/Memes/d795183d7a26f890147ca53e3d273c4d.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/Memes/d795183d7a26f890147ca53e3d273c4d.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/Memes/duf6lrz8syz41.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/Memes/duf6lrz8syz41.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/Memes/e585611ab167e4eaece002b01f212b2b.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/Memes/e585611ab167e4eaece002b01f212b2b.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/Memes/fw4kjsuxqd.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/Memes/fw4kjsuxqd.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/Memes/go206tkz9ff41.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/Memes/go206tkz9ff41.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/Memes/images.jfif" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/Memes/images.jfif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/Memes/maxresdefault (1).jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/Memes/maxresdefault (1).jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/Memes/maxresdefault.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/Memes/maxresdefault.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/Memes/static-assets-upload15487996151781834718.png" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/Memes/static-assets-upload15487996151781834718.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/Memes/wy3qujbnydr41.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/Memes/wy3qujbnydr41.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/dio-brando-jojo-s-bizarre-adventure-all-star-battle-manga-jotaro-kujo-png-clip-art.png" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/dio-brando-jojo-s-bizarre-adventure-all-star-battle-manga-jotaro-kujo-png-clip-art.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/myGif.gif" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/myGif.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Media/quotes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Media/quotes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commands.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bot/commands.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,6 +131,7 @@
       <workItem from="1609857295512" duration="125000" />
       <workItem from="1609857442209" duration="7000" />
       <workItem from="1609857641697" duration="262000" />
+      <workItem from="1609858208972" duration="29000" />
     </task>
     <servers />
   </component>
