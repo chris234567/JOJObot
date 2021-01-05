@@ -43,7 +43,7 @@ async def on_message(message):
 
     # random meme
     if message.content.startswith('-jojo meme'):
-        path = r"C:\Users\Chris\PycharmProjects\DiscordBot\bot\Media\Memes"
+        path = r"Media\Memes"
         random_filename = random.choice([
             x for x in os.listdir(path)
             if os.path.isfile(os.path.join(path, x))
@@ -51,7 +51,7 @@ async def on_message(message):
         await message.channel.send(file=discord.File('Media\Memes\\' + random_filename))
 
     if message.content.startswith('-zawarudo'):
-        await message.channel.send(file=discord.File('Media\myGif.gif'))
+        await message.channel.send(file=discord.File('myGif.gif'))
 
     if message.content.startswith('-w2g'):
         url = 'https://w2g.tv/rooms/create.json'
