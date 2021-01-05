@@ -56,7 +56,7 @@ async def on_message(message):
     if message.content.startswith('-w2g'):
         url = 'https://w2g.tv/rooms/create.json'
         myObj = {
-        'w2g_api_key' : 'TOKEN2',
+        'w2g_api_key' : TOKEN2,
         'share' : 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
         'bg_color' : '#00ff00',
         'bg_opacity' : '50',
@@ -65,4 +65,4 @@ async def on_message(message):
 
         await message.channel.send('https://w2g.tv/rooms/' + myRequest.text[29: 47: 1])
 
-client.run('TOKEN1')
+client.run(TOKEN1)
