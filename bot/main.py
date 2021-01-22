@@ -54,7 +54,7 @@ async def on_message(message):
         await message.channel.send(file=discord.File('Media\Memes\\' + random_filename))
 
     if message.content.startswith('-zawarudo'):
-        await message.channel.send(file=discord.File('myGif.gif'))
+        await message.channel.send(file=discord.File('s3://bucketeer-ae3f7055-64cb-4661-a470-52a49a7d98a5/public/myGif.gif'))
 
     if message.content.startswith('-w2g'):
         url = 'https://w2g.tv/rooms/create.json'
