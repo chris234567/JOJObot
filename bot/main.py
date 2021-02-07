@@ -22,7 +22,7 @@ async def on_message(message):
 
     # list of commands
     if message.content.startswith('-commands'):
-        commands = open('bot\commands.txt', 'r', encoding='utf-8').readlines()
+        commands = open('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/commands.txt', 'r', encoding='utf-8').readlines()
         for command in commands:
             await message.channel.send(command)
 
@@ -32,15 +32,13 @@ async def on_message(message):
 
     # random short quote
     if message.content.startswith('-jojo light'):
-        fileDir = os.path.dirname(os.path.realpath('__file__'))
-        filename = os.path.join(fileDir, '/Media/quotes.txt')
-        quotes = open(filename, 'r', encoding='utf-8').readlines()
+        quotes = open('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/quotes.txt', 'r', encoding='utf-8').readlines()
         i = random.randint(23, len(quotes) - 1)
         await message.channel.send(format(quotes[i].strip()))
 
     # random long quote
     if message.content.startswith('-jojo elaborate'):
-        quotes = open('https://github.com/chris234567/JOJObot/tree/master/bot/Media/quotes.txt', 'r', encoding='utf-8').readlines()
+        quotes = open('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/quotes.txt', 'r', encoding='utf-8').readlines()
         i = random.randint(1, 22)
         await message.channel.send(format(quotes[i].strip()))
 
@@ -54,7 +52,7 @@ async def on_message(message):
         await message.channel.send(file=discord.File('Media\Memes\\' + random_filename))
 
     if message.content.startswith('-zawarudo'):
-        await message.channel.send(file=discord.File('s3://bucketeer-ae3f7055-64cb-4661-a470-52a49a7d98a5/public/myGif.gif'))
+        await message.channel.send(file=discord.File('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/myGif.gif'))
 
     if message.content.startswith('-w2g'):
         url = 'https://w2g.tv/rooms/create.json'
