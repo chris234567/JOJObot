@@ -3,7 +3,7 @@ import discord
 import random
 import os
 import requests
-import urllib3.request
+import urllib.request
 
 client = discord.Client()
 
@@ -23,7 +23,7 @@ async def on_message(message):
 
     # list of commands
     if message.content.startswith('-commands'):
-        with urllib3.request.urlopen('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/commands.txt') as url:
+        with urllib.request.urlopen('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/commands.txt') as url:
             commands = url.read()
             for command in commands:
                 await message.channel.send(command)
