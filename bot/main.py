@@ -26,6 +26,7 @@ async def on_message(message):
         with urllib.request.urlopen('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/commands.txt') as url:
             commands = str(url.read())
             commands = commands.replace('b\'', '')
+            commands += '\\r\\n'
             commands = commands.replace('\\r\\n', '$')
             temp = ''
             for command in commands:
