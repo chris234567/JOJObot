@@ -24,9 +24,17 @@ async def on_message(message):
     # list of commands
     if message.content.startswith('-commands'):
         with urllib.request.urlopen('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/commands.txt') as url:
-            commands = url.read()
+            commands = str(url.read())
+            commands = commands.replace('b\'', '')
+            commands = commands.replace('\\r\\n', '$')
+            temp = ''
             for command in commands:
-                await message.channel.send(command)
+                if command == '$':
+                    await message.channel.send(temp)
+                    print('')
+                    temp = ''  # reset
+                else:
+                    temp += command
 
     # inital greeting
     if message.content.startswith('-hello'):
