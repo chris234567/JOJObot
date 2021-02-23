@@ -13,7 +13,7 @@ dirname = os.path.dirname(__file__)
 
 @client.event
 async def on_ready():
-    print('We have logged is as {0.user}'.format(client))
+    print('We have logged in as {0.user}'.format(client))
 
 @client.event
 async def on_message(message):
@@ -32,27 +32,27 @@ async def on_message(message):
 
     # random short quote
     if message.content.startswith('-jojo light'):
-        quotes = open('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/quotes.txt', 'r', encoding='utf-8').readlines()
+        quotes = open('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/quotes.txt', 'r', encoding='utf-8').readlines()
         i = random.randint(23, len(quotes) - 1)
         await message.channel.send(format(quotes[i].strip()))
 
     # random long quote
     if message.content.startswith('-jojo elaborate'):
-        quotes = open('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/quotes.txt', 'r', encoding='utf-8').readlines()
+        quotes = open('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/quotes.txt', 'r', encoding='utf-8').readlines()
         i = random.randint(1, 22)
         await message.channel.send(format(quotes[i].strip()))
 
     # random meme
     if message.content.startswith('-jojo meme'):
-        path = r"https://github.com/chris234567/JOJObot/tree/master/bot/Media/Memes"
+        path = r"https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/Memes/"
         random_filename = random.choice([
             x for x in os.listdir(path)
             if os.path.isfile(os.path.join(path, x))
         ])
-        await message.channel.send(file=discord.File('Media\Memes\\' + random_filename))
+        await message.channel.send(file=discord.File(random_filename))
 
     if message.content.startswith('-zawarudo'):
-        await message.channel.send(file=discord.File('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/myGif.gif'))
+        await message.channel.send(file=discord.File('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/myGif.gif'))
 
     if message.content.startswith('-w2g'):
         url = 'https://w2g.tv/rooms/create.json'
