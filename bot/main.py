@@ -3,7 +3,7 @@ import discord
 import random
 import os
 import requests
-import urllib3
+import urllib3.request
 
 client = discord.Client()
 
@@ -11,12 +11,6 @@ client = discord.Client()
 TOKEN1 = os.getenv("DISCORD_TOKEN")
 TOKEN2 = os.getenv("W2G_TOKEN")
 dirname = os.path.dirname(__file__)
-
-#for s3 access
-opener = urllib3.URLopener()
-myurl = "https://s3.amazonaws.com/skyl/fake.xyz"
-myfile = opener.open(myurl)
-
 
 @client.event
 async def on_ready():
@@ -29,9 +23,10 @@ async def on_message(message):
 
     # list of commands
     if message.content.startswith('-commands'):
-        commands = opener.open('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/commands.txt', 'r', encoding='utf-8').readlines()
-        for command in commands:
-            await message.channel.send(command)
+        with urllib3.request.urlopen('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/commands.txt') as url:
+            commands = url.read()
+            for command in commands:
+                await message.channel.send(command)
 
     # inital greeting
     if message.content.startswith('-hello'):
