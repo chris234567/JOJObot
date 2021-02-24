@@ -29,13 +29,13 @@ async def on_message(message):
             commands += '\\r\\n'
             commands = commands.replace('\\r\\n', '$')
             temp = ''
-            for command in commands:
-                if command == '$':
+            for c in commands:
+                if c == '$':
                     await message.channel.send(temp)
                     print('')
                     temp = ''  # reset
                 else:
-                    temp += command
+                    temp += c
 
     # inital greeting
     if message.content.startswith('-hello'):
@@ -43,15 +43,43 @@ async def on_message(message):
 
     # random short quote
     if message.content.startswith('-jojo light'):
-        quotes = open('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/quotes.txt', 'r', encoding='utf-8').readlines()
-        i = random.randint(23, len(quotes) - 1)
-        await message.channel.send(format(quotes[i].strip()))
+        quotesList = []
+        with urllib.request.urlopen('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/quotes1.txt') as url:
+            quotes = str(url.read())
+            quotes = quotes.replace('b\'', '')
+            quotes += '\\r\\n'
+            quotes = quotes.replace('\\r\\n', '$')
+            temp = ''
+            for c in quotes:
+                if c == '$':
+                    quotesList.append(temp)
+                    temp = ''  # reset
+                elif ord(c) >= 65 and ord(c) <= 90 or ord(c) >= 97 and ord(c) <= 122 \
+                        or ord(c) == 42 or ord(c) == 44 or ord(c) == 45 or ord(c) == 46 or ord(
+                    c) == 32:  # cuts every special character except * , . - SP
+                    temp += c
+        i = random.randint(23, len(quotesList) - 1)
+        await message.channel.send(format(quotesList[i].strip()))
 
     # random long quote
     if message.content.startswith('-jojo elaborate'):
-        quotes = open('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/quotes.txt', 'r', encoding='utf-8').readlines()
-        i = random.randint(1, 22)
-        await message.channel.send(format(quotes[i].strip()))
+        quotesList = []
+        with urllib.request.urlopen('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/quotes1.txt') as url:
+            quotes = str(url.read())
+            quotes = quotes.replace('b\'', '')
+            quotes += '\\r\\n'
+            quotes = quotes.replace('\\r\\n', '$')
+            temp = ''
+            for c in quotes:
+                if c == '$':
+                    quotesList.append(temp)
+                    temp = ''  # reset
+                elif ord(c) >= 65 and ord(c) <= 90 or ord(c) >= 97 and ord(c) <= 122 \
+                        or ord(c) == 42 or ord(c) == 44 or ord(c) == 45 or ord(c) == 46 or ord(
+                    c) == 32:  # cuts every special character except * , . - SP
+                    temp += c
+        i = random.randint(1, len(quotesList) // 2)
+        await message.channel.send(format(quotesList[i].strip()))
 
     # random meme
     if message.content.startswith('-jojo meme'):
