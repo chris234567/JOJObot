@@ -82,42 +82,45 @@ async def on_message(message):
 
     # random meme
     if message.content.startswith('-jojo meme'):
-        # from PIL import Image
-        # from urllib.request import urlopen
-        # from io import BytesIO
-        # url = 'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/Memes/128acf50b77783ec69c9e4d318fb288d.jpg'
-        #
-        # await message.channel.send(file=discord.File(open(urlopen(url))))
-
-        # path = r"https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/Memes/"
-        # random_filename = random.choice([
-        #     x for x in os.listdir(path)
-        #     if os.path.isfile(os.path.join(path, x))
-        # ])
-        # await message.channel.send(file=discord.File(random_filename))
-        import requests
+        num = random.randint(1, 17)
+        if num < 10:
+            num = '0' + str(num)
+        else:
+            num = str(num)
+        url = 'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/Memes/Meme' + num + '.jpg'
 
         try:
             ImgRequest = requests.get(
-                'https://images-na.ssl-images-amazon.com/images/I/51XF7E8VT4L._SY445_.jpg'
+                url
             )
-
             if ImgRequest.status_code == requests.codes.ok:
-                img = open("test.jpg", "wb")
+                img = open('temp.jpg', 'wb')
                 img.write(ImgRequest.content)
                 img.close()
             else:
                 # print(ImgRequest.status_code)
                 pass
-
         except Exception as e:
             # print(str(e))
             pass
-
         await message.channel.send(file=discord.File('test.jpg'))
 
     if message.content.startswith('-zawarudo'):
-        await message.channel.send(file=discord.File('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/myGif.gif'))
+        try:
+            ImgRequest = requests.get(
+                'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/myGif.gif'
+            )
+            if ImgRequest.status_code == requests.codes.ok:
+                img = open('temp.gif', 'wb')
+                img.write(ImgRequest.content)
+                img.close()
+            else:
+                # print(ImgRequest.status_code)
+                pass
+        except Exception as e:
+            # print(str(e))
+            pass
+        await message.channel.send(file=discord.File('temp.gif'))
 
     if message.content.startswith('-w2g'):
         url = 'https://w2g.tv/rooms/create.json'
