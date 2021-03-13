@@ -7,9 +7,8 @@ import urllib.request
 
 client = discord.Client()
 
-#token = open('token.txt', 'r', encoding='utf-8').readlines()
-TOKEN1 = os.getenv("DISCORD_TOKEN")
-TOKEN2 = os.getenv("W2G_TOKEN")
+TOKEN1 = os.getenv('DISCORD_TOKEN')
+TOKEN2 = os.getenv('W2G_TOKEN')
 dirname = os.path.dirname(__file__)
 
 @client.event
@@ -37,7 +36,7 @@ async def on_message(message):
                 else:
                     temp += c
 
-    # inital greeting
+    # initial greeting
     if message.content.startswith('-hello'):
         await message.channel.send('peep poop, im a bot:]')
 
@@ -83,12 +82,39 @@ async def on_message(message):
 
     # random meme
     if message.content.startswith('-jojo meme'):
-        path = r"https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/Memes/"
-        random_filename = random.choice([
-            x for x in os.listdir(path)
-            if os.path.isfile(os.path.join(path, x))
-        ])
-        await message.channel.send(file=discord.File(random_filename))
+        # from PIL import Image
+        # from urllib.request import urlopen
+        # from io import BytesIO
+        # url = 'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/Memes/128acf50b77783ec69c9e4d318fb288d.jpg'
+        #
+        # await message.channel.send(file=discord.File(open(urlopen(url))))
+
+        # path = r"https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/Memes/"
+        # random_filename = random.choice([
+        #     x for x in os.listdir(path)
+        #     if os.path.isfile(os.path.join(path, x))
+        # ])
+        # await message.channel.send(file=discord.File(random_filename))
+        import requests
+
+        try:
+            ImgRequest = requests.get(
+                'https://images-na.ssl-images-amazon.com/images/I/51XF7E8VT4L._SY445_.jpg'
+            )
+
+            if ImgRequest.status_code == requests.codes.ok:
+                img = open("test.jpg", "wb")
+                img.write(ImgRequest.content)
+                img.close()
+            else:
+                # print(ImgRequest.status_code)
+                pass
+
+        except Exception as e:
+            # print(str(e))
+            pass
+
+        await message.channel.send(file=discord.File('test.jpg'))
 
     if message.content.startswith('-zawarudo'):
         await message.channel.send(file=discord.File('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/myGif.gif'))
