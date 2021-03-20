@@ -7,9 +7,12 @@ import urllib.request
 
 client = discord.Client()
 
+#
+# TO DO: - commands auf externe funktionen auslagern
+#
+
 TOKEN1 = os.getenv('DISCORD_TOKEN')
 TOKEN2 = os.getenv('W2G_TOKEN')
-dirname = os.path.dirname(__file__)
 
 @client.event
 async def on_ready():
@@ -103,7 +106,8 @@ async def on_message(message):
         except Exception as e:
             # print(str(e))
             pass
-        await message.channel.send(file=discord.File('test.jpg'))
+        await message.channel.send(file=discord.File('temp.jpg'))
+        os.remove('temp.jpg')
 
     if message.content.startswith('-zawarudo'):
         try:
@@ -121,6 +125,7 @@ async def on_message(message):
             # print(str(e))
             pass
         await message.channel.send(file=discord.File('temp.gif'))
+        os.remove('temp.gif')
 
     if message.content.startswith('-w2g'):
         url = 'https://w2g.tv/rooms/create.json'
@@ -133,5 +138,52 @@ async def on_message(message):
         myRequest = requests.post(url, data = myObj)
 
         await message.channel.send('https://w2g.tv/rooms/' + myRequest.text[29: 47: 1])
+
+    if message.content.startswith('-döner'):
+        await message.channel.send('näääääächste bidde wasdarfssein')
+
+    # if message.content.startswith('-meme '): # '-meme "search word"'
+    #     from bs4 import BeautifulSoup
+    #     import json
+    #
+    #     def get_google_img(query):
+    #
+    #         url = "https://www.google.com/search?q=" + str(query) + "&source=lnms&tbm=isch"
+    #         headers = {
+    #             'User-Agent': "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"}
+    #
+    #         try:
+    #             html = requests.get(url, headers=headers).text
+    #         except requests.ConnectionError:
+    #             print("couldn't reach google")
+    #
+    #         soup = BeautifulSoup(html, 'html.parser')
+    #         image = soup.find("div", {"class": "rg_meta"})
+    #
+    #         try:
+    #             link = json.loads(image.text)["ou"]
+    #         except AttributeError:
+    #             print("couldn't find any images")
+    #         except ValueError:
+    #             print("ill formated json")
+    #
+    #         return link
+    #
+    #     try:
+    #         ImgRequest = requests.get(
+    #             get_google_img(message.content[5:])
+    #         )
+    #         print(message.content[5:])
+    #         if ImgRequest.status_code == requests.codes.ok:
+    #             img = open('temp.jpg', 'wb')
+    #             img.write(ImgRequest.content)
+    #             img.close()
+    #         else:
+    #             # print(ImgRequest.status_code)
+    #             pass
+    #     except Exception as e:
+    #         # print(str(e))
+    #         pass
+    #     await message.channel.send(file=discord.File('temp.jpg'))
 
 client.run(TOKEN1)
