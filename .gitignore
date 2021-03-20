@@ -1,4 +1,8 @@
+bot/Media
+bot/temp.gif
+bot/temp.jpg
 token.txt
+testing.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
