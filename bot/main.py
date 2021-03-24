@@ -4,11 +4,29 @@ import random
 import os
 import requests
 import urllib.request
+from bs4 import BeautifulSoup
 
 client = discord.Client()
 
+# function to get(temporarily create) file located in the cloud, referenced by a public url
+def getFile(url: str, fileType: str):
+    myFile = 'temp' + fileType
+    try:
+        ImgRequest = requests.get(url)
+        if ImgRequest.status_code == requests.codes.ok:
+            img = open(myFile, 'wb')
+            img.write(ImgRequest.content)
+            img.close()
+        else:
+            # print(ImgRequest.status_code)
+            pass
+    except Exception as e:
+        # print(str(e))
+        pass
+    return myFile
+
 #
-# TO DO: - commands auf externe funktionen auslagern
+# TODO: - commands auf externe funktionen auslagern
 #
 
 TOKEN1 = os.getenv('DISCORD_TOKEN')
@@ -25,19 +43,26 @@ async def on_message(message):
 
     # list of commands
     if message.content.startswith('-commands'):
-        with urllib.request.urlopen('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/commands.txt') as url:
-            commands = str(url.read())
-            commands = commands.replace('b\'', '')
-            commands += '\\r\\n'
-            commands = commands.replace('\\r\\n', '$')
-            temp = ''
-            for c in commands:
-                if c == '$':
-                    await message.channel.send(temp)
-                    print('')
-                    temp = ''  # reset
-                else:
-                    temp += c
+        try:
+            fileRequest = requests.get(
+                'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/commands.txt'
+            )
+            if fileRequest.status_code == requests.codes.ok:
+                file = open('temp.txt', 'wb')
+                file.write(fileRequest.content)
+                file.close()
+            else:
+                # print(ImgRequest.status_code)
+                pass
+        except Exception as e:
+            # print(str(e))
+            pass
+        with open('temp.txt') as f:
+            file = f.readlines()
+        f.close()
+        for command in file:
+            await message.channel.send(command)
+        os.remove('temp.txt')
 
     # initial greeting
     if message.content.startswith('-hello'):
@@ -45,87 +70,53 @@ async def on_message(message):
 
     # random short quote
     if message.content.startswith('-jojo light'):
-        quotesList = []
-        with urllib.request.urlopen('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/quotes1.txt') as url:
-            quotes = str(url.read())
-            quotes = quotes.replace('b\'', '')
-            quotes += '\\r\\n'
-            quotes = quotes.replace('\\r\\n', '$')
-            temp = ''
-            for c in quotes:
-                if c == '$':
-                    quotesList.append(temp)
-                    temp = ''  # reset
-                elif ord(c) >= 65 and ord(c) <= 90 or ord(c) >= 97 and ord(c) <= 122 \
-                        or ord(c) == 42 or ord(c) == 44 or ord(c) == 45 or ord(c) == 46 or ord(
-                    c) == 32:  # cuts every special character except * , . - SP
-                    temp += c
-        i = random.randint(23, len(quotesList) - 1)
-        await message.channel.send(format(quotesList[i].strip()))
+        with open(getFile(
+                'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/quotes.txt',
+                '.txt'
+        )) as f:
+            file = f.readlines()
+        f.close()
+        quotes = []
+        for command in file:
+            quotes.append(command)
+        await message.channel.send(quotes[random.randint(23, len(quotes) - 1)])
+        os.remove('temp.txt')
 
     # random long quote
     if message.content.startswith('-jojo elaborate'):
-        quotesList = []
-        with urllib.request.urlopen('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/quotes1.txt') as url:
-            quotes = str(url.read())
-            quotes = quotes.replace('b\'', '')
-            quotes += '\\r\\n'
-            quotes = quotes.replace('\\r\\n', '$')
-            temp = ''
-            for c in quotes:
-                if c == '$':
-                    quotesList.append(temp)
-                    temp = ''  # reset
-                elif ord(c) >= 65 and ord(c) <= 90 or ord(c) >= 97 and ord(c) <= 122 \
-                        or ord(c) == 42 or ord(c) == 44 or ord(c) == 45 or ord(c) == 46 or ord(
-                    c) == 32:  # cuts every special character except * , . - SP
-                    temp += c
-        i = random.randint(1, len(quotesList) // 2)
-        await message.channel.send(format(quotesList[i].strip()))
+        with open(getFile(
+                'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/quotes.txt',
+                '.txt'
+        )) as f:
+            file = f.readlines()
+        f.close()
+        quotes = []
+        for command in file:
+            quotes.append(command)
+        await message.channel.send(quotes[random.randint(1, len(quotes) // 2)])
+        os.remove('temp.txt')
 
-    # random meme
-    if message.content.startswith('-jojo meme'):
-        num = random.randint(1, 17)
-        if num < 10:
-            num = '0' + str(num)
-        else:
-            num = str(num)
-        url = 'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/Memes/Meme' + num + '.jpg'
-
-        try:
-            ImgRequest = requests.get(
-                url
-            )
-            if ImgRequest.status_code == requests.codes.ok:
-                img = open('temp.jpg', 'wb')
-                img.write(ImgRequest.content)
-                img.close()
-            else:
-                # print(ImgRequest.status_code)
-                pass
-        except Exception as e:
-            # print(str(e))
-            pass
-        await message.channel.send(file=discord.File('temp.jpg'))
-        os.remove('temp.jpg')
+    # # random meme
+    # if message.content.startswith('-jojo meme'):
+    #     num = random.randint(1, 17)
+    #     if num < 10:
+    #         num = '0' + str(num)
+    #     else:
+    #         num = str(num)
+    #     url = 'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/Memes/Meme' + num + '.jpg'
+    #     await message.channel.send(file=discord.File(getFile(
+    #         url,
+    #         '.jpg'
+    #     )))
+    #     os.remove('temp.jpg')
 
     if message.content.startswith('-zawarudo'):
-        try:
-            ImgRequest = requests.get(
-                'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/myGif.gif'
-            )
-            if ImgRequest.status_code == requests.codes.ok:
-                img = open('temp.gif', 'wb')
-                img.write(ImgRequest.content)
-                img.close()
-            else:
-                # print(ImgRequest.status_code)
-                pass
-        except Exception as e:
-            # print(str(e))
-            pass
-        await message.channel.send(file=discord.File('temp.gif'))
+        await message.channel.send(file=discord.File(getFile(
+            'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/myGif.gif',
+            '.gif'
+        )))
         os.remove('temp.gif')
+
 
     if message.content.startswith('-w2g'):
         url = 'https://w2g.tv/rooms/create.json'
@@ -142,48 +133,35 @@ async def on_message(message):
     if message.content.startswith('-döner'):
         await message.channel.send('näääääächste bidde wasdarfssein')
 
-    # if message.content.startswith('-meme '): # '-meme "search word"'
-    #     from bs4 import BeautifulSoup
-    #     import json
-    #
-    #     def get_google_img(query):
-    #
-    #         url = "https://www.google.com/search?q=" + str(query) + "&source=lnms&tbm=isch"
-    #         headers = {
-    #             'User-Agent': "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"}
-    #
-    #         try:
-    #             html = requests.get(url, headers=headers).text
-    #         except requests.ConnectionError:
-    #             print("couldn't reach google")
-    #
-    #         soup = BeautifulSoup(html, 'html.parser')
-    #         image = soup.find("div", {"class": "rg_meta"})
-    #
-    #         try:
-    #             link = json.loads(image.text)["ou"]
-    #         except AttributeError:
-    #             print("couldn't find any images")
-    #         except ValueError:
-    #             print("ill formated json")
-    #
-    #         return link
-    #
-    #     try:
-    #         ImgRequest = requests.get(
-    #             get_google_img(message.content[5:])
-    #         )
-    #         print(message.content[5:])
-    #         if ImgRequest.status_code == requests.codes.ok:
-    #             img = open('temp.jpg', 'wb')
-    #             img.write(ImgRequest.content)
-    #             img.close()
-    #         else:
-    #             # print(ImgRequest.status_code)
-    #             pass
-    #     except Exception as e:
-    #         # print(str(e))
-    #         pass
-    #     await message.channel.send(file=discord.File('temp.jpg'))
+
+    if 'meme' in message.content: # '-"search word" meme
+        searchWord = message.content[1:message.content.index('meme')]
+        imgUrl = 'https://www.google.com/search?q=' + \
+              searchWord + \
+              '%20meme&hl=en&tbm=isch&sxsrf=ALeKk01TyW9TtpcXYTSz_HTTfTato8pibQ%3A1616238371043&source=hp&biw=939&bih=1010&ei=ItdVYKvpPKS2gwfliqtI&oq=dog&gs_lcp=CgNpbWcQAzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCABQrjRYijdgpjhoAXAAeACAAUWIAcsBkgEBM5gBAKABAaoBC2d3cy13aXotaW1nsAEA&sclient=img&ved=0ahUKEwirgueP3b7vAhUk2-AKHWXFCgkQ4dUDCAc&uact=5'
+        A = ("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36",
+             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36",
+             "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36",
+             )
+        Agent = A[random.randrange(len(A))]
+        headers = {'user-agent': Agent}
+        r = requests.get(imgUrl, headers=headers)
+        soup = BeautifulSoup(r.content, 'html.parser')
+        myUrl = ''
+
+        for img in soup.findAll('a'):
+            myImg = img.get('href')
+            if 'pinterest' in myImg:
+                myUrl = myImg[7:myImg.index('/&sa=U')]
+                await message.channel.send(myUrl)
+                break
+
+        r = requests.get(myUrl, headers=headers)
+        soup = BeautifulSoup(r.content, 'html.parser')
+        for img in soup.findAll('img'):
+            myImg = img.get('src')
+            await message.channel.send(myUrl)
+            break
+
 
 client.run(TOKEN1)
