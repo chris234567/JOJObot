@@ -133,7 +133,6 @@ async def on_message(message):
     if message.content.startswith('-döner'):
         await message.channel.send('näääääächste bidde wasdarfssein')
 
-
     if 'meme' in message.content: # '-"search word" meme
         searchWord = message.content[1:message.content.index('meme')]
         imgUrl = 'https://www.google.com/search?q=' + \
