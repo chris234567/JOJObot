@@ -1,5 +1,4 @@
 discord.py
-discord.ext
 
 requests~=2.25.1
 

@@ -3,6 +3,8 @@ bot/temp.gif
 bot/temp.jpg
 token.txt
 testing.py
+.idea
+__pycache__
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
