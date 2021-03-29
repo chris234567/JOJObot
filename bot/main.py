@@ -191,4 +191,4 @@ async def play(ctx):
     await ctx.voice_client.disconnect()
 
 
-client.run('NzkxMzQwMTgzODE1NTg1Nzky.X-Nu-g.sbjR8Qsrw54LIjCKKoY_9qMVpUQ')
+client.run(TOKEN1)
