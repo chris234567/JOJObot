@@ -125,6 +125,32 @@ async def zawarudo(ctx):
     )))
     os.remove('temp.gif')
 
+    file = getFile(
+        'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/ZA+WARUDO.mp3',
+        '.mp3'
+    )
+
+    voice_channel = ctx.author.voice.channel
+    await voice_channel.connect()
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+    voice.play(discord.FFmpegPCMAudio(executable="C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe",
+                                      source=file))
+    while ctx.voice_client.is_playing():
+        time.sleep(1)
+    await ctx.voice_client.disconnect()
+
+
+@client.command()
+async def soulja(ctx):
+    voice_channel = ctx.author.voice.channel
+    await voice_channel.connect()
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+    voice.play(discord.FFmpegPCMAudio(executable="C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe",
+                                      source="C:\\Users\\Chris\\Downloads\\Its ya boi soulja boy in dubai.mp3"))
+    while ctx.voice_client.is_playing():
+        time.sleep(1)
+    await ctx.voice_client.disconnect()
+
 
 # creates a watch2gether room
 @client.command()
@@ -139,6 +165,46 @@ async def w2g(ctx):
     myRequest = requests.post(url, data = myObj)
 
     await ctx.channel.send('https://w2g.tv/rooms/' + myRequest.text[29: 47: 1])
+
+
+@client.command()
+async def wecker(ctx):
+    file = getFile(
+        'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/MontanaWecker+Der+Monte+Wecker+2.0+MontanaBlack+Clips.mp3',
+        '.mp3'
+    )
+
+    voice_channel = ctx.author.voice.channel
+    await voice_channel.connect()
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+    voice.play(discord.FFmpegPCMAudio(executable="C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe",
+                                      source=file))
+    while ctx.voice_client.is_playing():
+        time.sleep(1)
+    await ctx.voice_client.disconnect()
+
+
+@client.command()
+async def juri(ctx):
+    await ctx.channel.send(file=discord.File(getFile(
+        'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/gmzogga_ist_top.gif',
+        '.gif'
+    )))
+    os.remove('temp.gif')
+
+    file = getFile(
+        'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/gmzogga_ist_top+(online-audio-converter.com).mp3',
+        '.mp4'
+    )
+
+    voice_channel = ctx.author.voice.channel
+    await voice_channel.connect()
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+    voice.play(discord.FFmpegPCMAudio(executable="C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe",
+                                      source=file))
+    while ctx.voice_client.is_playing():
+        time.sleep(1)
+    await ctx.voice_client.disconnect()
 
 
 # creates a watch2gether room
@@ -179,16 +245,27 @@ async def döner(ctx):
 #         await message.channel.send(myUrl)
 #         break
 
-@client.command()
-async def play(ctx):
-    voice_channel = ctx.author.voice.channel
-    await voice_channel.connect()
-    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
-    voice.play(discord.FFmpegPCMAudio(executable="C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe", source="C:\\Users\\Chris\\Downloads\\ZA WARUDO.mp3"))
 
-    while ctx.voice_client.is_playing():
-        time.sleep(1)
-    await ctx.voice_client.disconnect()
+# @client.command()
+# async def play(ctx):
+#     voice_channel = ctx.author.voice.channel
+#     await voice_channel.connect()
+#     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+#     voice.play(discord.FFmpegPCMAudio(executable="C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe", source="C:\\Users\\Chris\\Downloads\\ZA WARUDO.mp3"))
+#
+#     while ctx.voice_client.is_playing():
+#         time.sleep(1)
+#     await ctx.voice_client.disconnect()
+
+#
+# warum geht das nicht
+# @client.command()
+# async def leave(ctx):
+#     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+#     if voice.is_connected():
+#         await voice.disconnect()
+#     else:
+#         await ctx.send("The bot is not connected to a voice channel.")
 
 
 client.run(TOKEN1)
