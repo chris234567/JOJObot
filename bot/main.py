@@ -6,6 +6,7 @@ import random
 import requests
 import urllib.request
 from bs4 import BeautifulSoup
+import time
 
 client = commands.Bot(command_prefix="!")
 
@@ -178,5 +179,16 @@ async def döner(ctx):
 #         await message.channel.send(myUrl)
 #         break
 
+@client.command()
+async def play(ctx):
+    voice_channel = ctx.author.voice.channel
+    await voice_channel.connect()
+    voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
+    voice.play(discord.FFmpegPCMAudio(executable="C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe", source="C:\\Users\\Chris\\Downloads\\ZA WARUDO.mp3"))
 
-client.run(TOKEN1)
+    while ctx.voice_client.is_playing():
+        time.sleep(1)
+    await ctx.voice_client.disconnect()
+
+
+client.run('NzkxMzQwMTgzODE1NTg1Nzky.X-Nu-g.sbjR8Qsrw54LIjCKKoY_9qMVpUQ')
