@@ -1,7 +1,0 @@
-`-commands` *prints available commands*
-`-hello` *greet the bot*
-`-jojo light` *prints a short quote from jojos bizarre adventures*
-`-jojo elaborate` *prints a elongated quote from jojos bizarre adventures*
-`-jojo meme` *generates random meme*
-`-zawarudo` *stops time*
-`-w2g` *creates a watchtogether room*
