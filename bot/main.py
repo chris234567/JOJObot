@@ -123,8 +123,6 @@ async def zawarudo(ctx):
         'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/myGif.gif',
         '.gif'
     )))
-    os.remove('temp.gif')
-
     file = getFile(
         'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/ZA+WARUDO.mp3',
         '.mp3'
@@ -133,11 +131,12 @@ async def zawarudo(ctx):
     voice_channel = ctx.author.voice.channel
     await voice_channel.connect()
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
-    voice.play(discord.FFmpegPCMAudio(executable="C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe",
-                                      source=file))
+    voice.play(discord.FFmpegPCMAudio(file))
     while ctx.voice_client.is_playing():
         time.sleep(1)
     await ctx.voice_client.disconnect()
+    os.remove('temp.gif')
+    os.remove('temp.mp3')
 
 
 @client.command()
@@ -145,11 +144,11 @@ async def soulja(ctx):
     voice_channel = ctx.author.voice.channel
     await voice_channel.connect()
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
-    voice.play(discord.FFmpegPCMAudio(executable="C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe",
-                                      source="C:\\Users\\Chris\\Downloads\\Its ya boi soulja boy in dubai.mp3"))
+    voice.play(discord.FFmpegPCMAudio("https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/Its+ya+boi+soulja+boy+in+dubai.mp3"))
     while ctx.voice_client.is_playing():
         time.sleep(1)
     await ctx.voice_client.disconnect()
+    os.remove('temp.mp3')
 
 
 # creates a watch2gether room
@@ -177,11 +176,11 @@ async def wecker(ctx):
     voice_channel = ctx.author.voice.channel
     await voice_channel.connect()
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
-    voice.play(discord.FFmpegPCMAudio(executable="C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe",
-                                      source=file))
+    voice.play(discord.FFmpegPCMAudio(file))
     while ctx.voice_client.is_playing():
         time.sleep(1)
     await ctx.voice_client.disconnect()
+    os.remove('temp.mp3')
 
 
 @client.command()
@@ -190,8 +189,6 @@ async def juri(ctx):
         'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/gmzogga_ist_top.gif',
         '.gif'
     )))
-    os.remove('temp.gif')
-
     file = getFile(
         'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/gmzogga_ist_top+(online-audio-converter.com).mp3',
         '.mp4'
@@ -200,11 +197,12 @@ async def juri(ctx):
     voice_channel = ctx.author.voice.channel
     await voice_channel.connect()
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
-    voice.play(discord.FFmpegPCMAudio(executable="C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe",
-                                      source=file))
+    voice.play(discord.FFmpegPCMAudio(file))
     while ctx.voice_client.is_playing():
         time.sleep(1)
     await ctx.voice_client.disconnect()
+    os.remove('temp.gif')
+    os.remove('temp.mp4')
 
 
 # creates a watch2gether room
