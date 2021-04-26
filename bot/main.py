@@ -129,7 +129,7 @@ async def zawarudo(ctx):
     voice_channel = ctx.author.voice.channel
     await voice_channel.connect()
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
-    voice.play(discord.FFmpegPCMAudio(executable='ffmpeg\\ffmpeg.exe', source=file))
+    voice.play(discord.FFmpegPCMAudio(file))
     while ctx.voice_client.is_playing():
         time.sleep(1)
     await ctx.voice_client.disconnect()
@@ -147,8 +147,7 @@ async def soulja(ctx):
     voice_channel = ctx.author.voice.channel
     await voice_channel.connect()
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
-    voice.play(discord.FFmpegPCMAudio(executable='./ffmpeg/ffmpeg.exe',
-                                      source=file))
+    voice.play(discord.FFmpegPCMAudio(file))
     while ctx.voice_client.is_playing():
         time.sleep(1)
     await ctx.voice_client.disconnect()
