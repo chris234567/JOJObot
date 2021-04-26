@@ -152,6 +152,7 @@ async def soulja(ctx):
     while ctx.voice_client.is_playing():
         time.sleep(1)
     await ctx.voice_client.disconnect()
+    os.remove('temp.mp3')
 
 
 # creates a watch2gether room
