@@ -1,14 +1,18 @@
-#bot driver file
+# bot driver file
 import os
-import discord
-from discord.ext import commands
 import random
-import requests
-import urllib.request
-from bs4 import BeautifulSoup
 import time
 
+import discord
+import requests
+from discord.ext import commands
+import urllib.request
+from bs4 import BeautifulSoup
+
 client = commands.Bot(command_prefix="!")
+TOKEN1 = os.getenv('DISCORD_TOKEN')
+TOKEN2 = os.getenv('W2G_TOKEN')
+
 
 # function to get(temporarily create) file located in the cloud, referenced by a public url
 def getFile(url: str, fileType: str):
@@ -26,13 +30,6 @@ def getFile(url: str, fileType: str):
         # print(str(e))
         pass
     return myFile
-
-#
-# TODO: - commands auf externe funktionen auslagern
-#
-
-TOKEN1 = os.getenv('DISCORD_TOKEN')
-TOKEN2 = os.getenv('W2G_TOKEN')
 
 
 @client.event
@@ -62,6 +59,7 @@ async def commands(ctx):
     for command in file:
         await ctx.channel.send(command)
     os.remove('temp.txt')
+
 
 @client.command()
 async def hello(ctx):
@@ -131,7 +129,7 @@ async def zawarudo(ctx):
     voice_channel = ctx.author.voice.channel
     await voice_channel.connect()
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
-    voice.play(discord.FFmpegPCMAudio(file))
+    voice.play(discord.FFmpegPCMAudio(executable='ffmpeg\\ffmpeg.exe', source=file))
     while ctx.voice_client.is_playing():
         time.sleep(1)
     await ctx.voice_client.disconnect()
@@ -139,16 +137,21 @@ async def zawarudo(ctx):
     os.remove('temp.mp3')
 
 
+# cranks dat boi
 @client.command()
 async def soulja(ctx):
+    file = getFile(
+        'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/Its+ya+boi+soulja+boy+in+dubai.mp3',
+        '.mp3'
+    )
     voice_channel = ctx.author.voice.channel
     await voice_channel.connect()
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
-    voice.play(discord.FFmpegPCMAudio("https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/Its+ya+boi+soulja+boy+in+dubai.mp3"))
+    voice.play(discord.FFmpegPCMAudio(executable='./ffmpeg/ffmpeg.exe',
+                                      source=file))
     while ctx.voice_client.is_playing():
         time.sleep(1)
     await ctx.voice_client.disconnect()
-    os.remove('temp.mp3')
 
 
 # creates a watch2gether room
@@ -156,12 +159,12 @@ async def soulja(ctx):
 async def w2g(ctx):
     url = 'https://w2g.tv/rooms/create.json'
     myObj = {
-    'w2g_api_key' : TOKEN2,
-    'share' : 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    'bg_color' : '#00ff00',
-    'bg_opacity' : '50',
+        'w2g_api_key': TOKEN2,
+        'share': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        'bg_color': '#00ff00',
+        'bg_opacity': '50',
     }
-    myRequest = requests.post(url, data = myObj)
+    myRequest = requests.post(url, data=myObj)
 
     await ctx.channel.send('https://w2g.tv/rooms/' + myRequest.text[29: 47: 1])
 
@@ -205,7 +208,6 @@ async def juri(ctx):
     os.remove('temp.mp4')
 
 
-# creates a watch2gether room
 @client.command()
 async def döner(ctx):
     await ctx.channel.send('näääääächste bidde wasdarfssein')
@@ -266,4 +268,4 @@ async def döner(ctx):
 #         await ctx.send("The bot is not connected to a voice channel.")
 
 
-client.run(TOKEN1)
+client.run('NzkxMzQwMTgzODE1NTg1Nzky.X-Nu-g.U9RiYI_vcJCqwDNtfbGBKWK3C08')

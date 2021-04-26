@@ -4,6 +4,6 @@ requests~=2.25.1
 
 bs4~=0.0.1
 beautifulsoup4~=4.9.3
-ffmpeg~=1.4
+ffmpeg
 
 PyNaCl
