@@ -268,4 +268,4 @@ async def döner(ctx):
 #         await ctx.send("The bot is not connected to a voice channel.")
 
 
-client.run('NzkxMzQwMTgzODE1NTg1Nzky.X-Nu-g.U9RiYI_vcJCqwDNtfbGBKWK3C08')
+client.run(TOKEN1)
