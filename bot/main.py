@@ -1,35 +1,18 @@
-# bot driver file
 import os
 import random
 import time
-
-import discord
-import requests
-from discord.ext import commands
 import urllib.request
+
+import requests
+import discord
+from discord.ext import commands
 from bs4 import BeautifulSoup
+
+from functionality import getFile
 
 client = commands.Bot(command_prefix="!")
 TOKEN1 = os.getenv('DISCORD_TOKEN')
 TOKEN2 = os.getenv('W2G_TOKEN')
-
-
-# function to get(temporarily create) file located in the cloud, referenced by a public url
-def getFile(url: str, fileType: str):
-    myFile = 'temp' + fileType
-    try:
-        ImgRequest = requests.get(url)
-        if ImgRequest.status_code == requests.codes.ok:
-            img = open(myFile, 'wb')
-            img.write(ImgRequest.content)
-            img.close()
-        else:
-            # print(ImgRequest.status_code)
-            pass
-    except Exception as e:
-        # print(str(e))
-        pass
-    return myFile
 
 
 @client.event
@@ -66,9 +49,9 @@ async def hello(ctx):
     await ctx.channel.send('peep poop, im a bot:]')
 
 
-# random short quote
 @client.command()
 async def jojo_light(ctx):
+    """random short quote"""
     with open(getFile(
             'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/quotes.txt',
             '.txt'
@@ -82,9 +65,9 @@ async def jojo_light(ctx):
     os.remove('temp.txt')
 
 
-# random long quote
 @client.command()
 async def jojo_elaborate(ctx):
+    """random long quote"""
     with open(getFile(
             'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/quotes.txt',
             '.txt'
@@ -98,9 +81,9 @@ async def jojo_elaborate(ctx):
     os.remove('temp.txt')
 
 
-# # random meme
 # @client.command()
 # async def jojo_meme(ctx):
+#     """random meme"""
 #     num = random.randint(1, 17)
 #     if num < 10:
 #         num = '0' + str(num)
@@ -114,9 +97,9 @@ async def jojo_elaborate(ctx):
 #     os.remove('temp.jpg')
 
 
-# stops time
 @client.command()
 async def zawarudo(ctx):
+    """stops time"""
     await ctx.channel.send(file=discord.File(getFile(
         'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/myGif.gif',
         '.gif'
@@ -137,9 +120,9 @@ async def zawarudo(ctx):
     os.remove('temp.mp3')
 
 
-# cranks dat boi
 @client.command()
 async def soulja(ctx):
+    """cranks dat boi"""
     file = getFile(
         'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/Its+ya+boi+soulja+boy+in+dubai.mp3',
         '.mp3'
@@ -154,9 +137,9 @@ async def soulja(ctx):
     os.remove('temp.mp3')
 
 
-# creates a watch2gether room
 @client.command()
 async def w2g(ctx):
+    """sends url to newly created w2g room"""
     url = 'https://w2g.tv/rooms/create.json'
     myObj = {
         'w2g_api_key': TOKEN2,
@@ -171,6 +154,7 @@ async def w2g(ctx):
 
 @client.command()
 async def wecker(ctx):
+    """aufstehen!!"""
     file = getFile(
         'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/MontanaWecker+Der+Monte+Wecker+2.0+MontanaBlack+Clips.mp3',
         '.mp3'
@@ -188,6 +172,7 @@ async def wecker(ctx):
 
 @client.command()
 async def juri(ctx):
+    """triggerbot"""
     await ctx.channel.send(file=discord.File(getFile(
         'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/Media/gmzogga_ist_top.gif',
         '.gif'
@@ -209,7 +194,8 @@ async def juri(ctx):
 
 
 @client.command()
-async def döner(ctx):
+async def doener(ctx):
+    """aufnahme der naechsten bestellung"""
     await ctx.channel.send('näääääächste bidde wasdarfssein')
 
 
