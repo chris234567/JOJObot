@@ -16,3 +16,5 @@ def getFile(url: str, fileType: str):
         # print(str(e))
         pass
     return myFile
+
+

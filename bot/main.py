@@ -22,27 +22,16 @@ async def on_ready():
 
 @client.command()
 async def commands(ctx):
-    try:
-        fileRequest = requests.get(
-            'https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/commands.txt'
-        )
-        if fileRequest.status_code == requests.codes.ok:
-            file = open('temp.txt', 'wb')
-            file.write(fileRequest.content)
-            file.close()
-        else:
-            # print(ImgRequest.status_code)
-            pass
-    except Exception as e:
-        # print(str(e))
-        pass
-    with open('temp.txt') as f:
+    commands_txt = getFile('https://chrisdiscordpybucket.s3.eu-central-1.amazonaws.com/commands2.txt', '.txt')
+    with open(commands_txt) as f:
         file = f.readlines()
-    f.close()
+    commands_string = ""
     for command in file:
-        await ctx.channel.send(command)
+        commands_string += command
+    f.close()
+    await ctx.channel.send(commands_string)
     os.remove('temp.txt')
-
+    print(commands_string)
 
 @client.command()
 async def hello(ctx):
